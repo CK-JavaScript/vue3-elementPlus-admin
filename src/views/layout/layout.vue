@@ -188,9 +188,9 @@ function reload() {
   .main {
     position: relative;
     box-sizing: border-box;
-    padding: 15px;
     width: 100%;
     min-height: 100%;
+    border: 10px solid #fff;
     background-color: var(--el-bg-color);
     box-shadow: 0 0px 4px rgba(0, 21, 41, 0.08);
   }
