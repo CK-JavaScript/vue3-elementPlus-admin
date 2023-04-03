@@ -13,8 +13,8 @@
       <SvgIcon class="info-icon" name="Refresh" @click="operationFunction('refresh')"></SvgIcon>
       <el-dropdown style="cursor: pointer" @visible-change="changeDropdownVisible">
         <div class="flex align-center" style="gap: 0 10px">
-          <img class="info-avatar" :src="storeUser.userinfo.avatar" alt="" srcset="" />
-          <p class="info-name">{{ storeUser.userinfo.username }}</p>
+          <img class="info-avatar" :src="storeUser.userInfo.avatar" alt="" srcset="" />
+          <p class="info-name">{{ storeUser.userInfo.username }}</p>
           <SvgIcon name="arrow-down"></SvgIcon>
         </div>
         <template #dropdown>

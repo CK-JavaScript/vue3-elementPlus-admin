@@ -1,26 +1,31 @@
 import router from "./index.js";
 import { staticRoutes, asyncRoutes } from "@/router/routes.js";
 import { useRoutes } from "@/store/routes.js";
+import { useUser } from "@/store/user.js";
 
 /**
  * @description: 初始化路由
  * @param {Array} roles: 用户权限
  */
-export function initFrontEndRoutes(roles) {
-  return new Promise((resolve) => {
-    let addRoutes;
-    if (roles.includes("admin")) {
-      // 管理员权限包含所有的路由权限
-      addRoutes = asyncRoutes || [];
-    } else {
-      addRoutes = filterAsyncRoutes(asyncRoutes, roles);
-    }
-    setAddRoute(addRoutes);
-    const storeRoutes = useRoutes();
-    storeRoutes.setRoutesList([...staticRoutes[0].children, ...addRoutes]);
-    storeRoutes.setAllRoutes(router.getRoutes());
-    resolve(router.getRoutes());
-  });
+export async function initFrontEndRoutes() {
+  const storeUser = useUser();
+
+  // 触发初始化用户信息
+  await storeUser.setUserInfo();
+  const roles = storeUser.userInfo.roles; // 权限
+  // if (roles?.length <= 0) {}; 无权限时的处理
+
+  let addRoutes;
+  if (roles.includes("admin")) {
+    // 管理员权限包含所有的路由权限
+    addRoutes = asyncRoutes || [];
+  } else {
+    addRoutes = filterAsyncRoutes(asyncRoutes, roles);
+  }
+  setAddRoute(addRoutes);
+  const storeRoutes = useRoutes();
+  storeRoutes.setRoutesList([...staticRoutes[0].children, ...addRoutes]);
+  storeRoutes.setAllRoutes(router.getRoutes());
 }
 
 /**
