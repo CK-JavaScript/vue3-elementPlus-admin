@@ -6,6 +6,10 @@ import AutoImport from "unplugin-auto-import/vite";
 export default defineConfig({
   server: {
     hmr: true,
+    host: "127.0.0.1",
+    port: "8989",
+    open: true,
+    https: false,
   },
   resolve: {
     alias: {

@@ -1,16 +1,16 @@
 <template>
-  <div class="layout-view">
-    <div class="sidebar">
-      <!-- 侧边栏的布局模式 -->
-      <sidebar-mode-a v-if="getConfigure.menuMode == layoutModeEnum.key[0]" :list="storeRoutes.routesList" width="260px"></sidebar-mode-a>
-      <sidebar-mode-b v-else-if="getConfigure.menuMode == layoutModeEnum.key[1]"></sidebar-mode-b>
-    </div>
-    <div class="main-case">
-      <div class="header">
-        <page-header @operation="operation"></page-header>
-        <navbar v-if="getConfigure.showNavbar"></navbar>
+  <div class="layout-container">
+    <div class="layout-case">
+      <div class="sidebar">
+        <!-- 侧边栏的布局模式 -->
+        <sidebar-mode-a v-if="getConfigure.menuMode == layoutModeEnum.key[0]" :list="storeRoutes.routesList" width="260px"></sidebar-mode-a>
+        <sidebar-mode-b v-else-if="getConfigure.menuMode == layoutModeEnum.key[1]"></sidebar-mode-b>
       </div>
-      <div class="appMain">
+      <div class="layout-case" style="flex-direction: column">
+        <header class="header">
+          <page-header @operation="operation"></page-header>
+          <navbar v-if="getConfigure.showNavbar"></navbar>
+        </header>
         <main class="main">
           <router-view v-slot="{ Component }" v-if="isRefreshRoute">
             <transition :name="getConfigure.componentTransitionMode" mode="out-in" v-if="getConfigure.componentTransition">
@@ -122,77 +122,46 @@ function reload() {
   transition: all 0s ease;
 }
 
-.layout-view {
+.layout-container {
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
   left: 0;
+  right: 0;
   margin: auto;
   display: flex;
 }
-
+.layout-case {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-basis: auto;
+  box-sizing: border-box;
+  min-width: 0;
+}
 .sidebar {
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: var(--admin-column-bg-color);
-
-  .logo-case {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 80px;
-    overflow: hidden;
-
-    .logo {
-      position: absolute;
-      height: 80px;
-    }
-  }
 }
-
-.main-case {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-
-  .header {
-    z-index: 2;
-    position: relative;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-  }
-
-  .appMain {
-    flex-grow: 1;
-    z-index: 1;
-    padding: 15px;
-    background-color: #f6f8f9;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      background-color: #f1f1f1;
-      border-radius: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: #dfdfdf;
-      border-radius: 8px;
-    }
-  }
-
-  .main {
-    position: relative;
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 100%;
-    border: 10px solid #fff;
-    background-color: var(--el-bg-color);
-    box-shadow: 0 0px 4px rgba(0, 21, 41, 0.08);
-  }
+.header {
+  position: relative;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 110px;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+.main {
+  display: block;
+  flex: 1;
+  flex-basis: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 15px solid var(--el-color-info-light-9);
+  box-sizing: border-box;
+  background-color: #fff;
+  @extend .scrollbar-y;
 }
 </style>

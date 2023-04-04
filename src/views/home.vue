@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <div ref="chartsDiscount" style="width: 500px; height: 400px"></div>
-    <div ref="chartsCake" style="width: 500px; height: 400px"></div>
+    <div class="select-case"></div>
+    <div class="charts-case">
+      <div ref="chartsDiscount" style="width: 100%; height: 400px"></div>
+      <div ref="chartsCake" style="width: 100%; height: 400px"></div>
+      <div class="chartsColumn" ref="chartsColumn" style="width: 100%; height: 400px"></div>
+    </div>
   </div>
 </template>
 
@@ -11,13 +15,30 @@ import * as echarts from "echarts";
 // 定义变量内容
 const chartsDiscount = ref();
 const chartsCake = ref();
+const chartsColumn = ref();
+const chartsObj = {
+  chartsDiscount: "",
+  chartsCake: "",
+  chartsColumn: "",
+  myCharts: [],
+};
 
-const initDeicount = () => {
-  const myChart = echarts.init(chartsDiscount.value);
+// 初始化折线图
+function initDeicount() {
+  chartsObj.chartsDiscount = echarts.init(chartsDiscount.value);
   const option = {
+    title: {
+      text: "周访问量",
+      top: "2%",
+      left: "2%",
+    },
+    legend: {
+      top: "8%",
+      left: "center",
+    },
     xAxis: {
       type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
     },
     yAxis: {
       type: "value",
@@ -25,26 +46,34 @@ const initDeicount = () => {
     series: [
       {
         data: [150, 230, 224, 218, 135, 147, 260],
+        stack: "Total",
         type: "line",
       },
     ],
   };
-  myChart.setOption(option);
-};
+  chartsObj.chartsDiscount.setOption(option);
+  chartsObj.myCharts.push(chartsObj.chartsDiscount);
+}
 
-const initCake = () => {
-  var myChart = echarts.init(chartsCake.value);
-  var option = {
+// 初始化饼图
+function initCake() {
+  chartsObj.chartsCake = echarts.init(chartsCake.value);
+  const option = {
+    title: {
+      text: "周访问量",
+      top: "2%",
+      left: "2%",
+    },
     tooltip: {
       trigger: "item",
     },
     legend: {
-      top: "5%",
+      top: "8%",
       left: "center",
     },
     series: [
       {
-        name: "Access From",
+        name: "地区值",
         type: "pie",
         radius: ["40%", "70%"],
         avoidLabelOverlap: false,
@@ -68,29 +97,99 @@ const initCake = () => {
           show: false,
         },
         data: [
-          { value: 1048, name: "Search Engine" },
-          { value: 735, name: "Direct" },
-          { value: 580, name: "Email" },
-          { value: 484, name: "Union Ads" },
-          { value: 300, name: "Video Ads" },
+          { value: 1048, name: "周一" },
+          { value: 735, name: "周二" },
+          { value: 560, name: "周三" },
+          { value: 580, name: "周四" },
+          { value: 484, name: "周五" },
+          { value: 300, name: "周六" },
+          { value: 167, name: "周日" },
         ],
       },
     ],
   };
-  myChart.setOption(option);
-};
+  chartsObj.chartsCake.setOption(option);
+  chartsObj.myCharts.push(chartsObj.chartsCake);
+}
+
+// 初始化柱状图
+function initColumn() {
+  chartsObj.chartsColumn = echarts.init(chartsColumn.value);
+  var option = {
+    title: {
+      text: "周访问量",
+      top: "2%",
+      left: "2%",
+    },
+    tooltip: {
+      trigger: "axis",
+      axisPointer: {
+        type: "shadow",
+      },
+    },
+    legend: {},
+    grid: {
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
+      containLabel: true,
+    },
+    xAxis: {
+      type: "value",
+      boundaryGap: [0, 0.01],
+    },
+    yAxis: {
+      type: "category",
+      data: ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    },
+    series: [
+      {
+        type: "bar",
+        data: [1048, 735, 560, 580, 484, 300, 167],
+      },
+    ],
+  };
+  chartsObj.chartsColumn.setOption(option);
+  chartsObj.myCharts.push(chartsObj.chartsColumn);
+}
+
+// 批量设置 echarts resize
+function initEChartsResize() {
+  var myEvent = new Event("resize");
+  window.addEventListener("resize", () => {
+    nextTick(() => {
+      for (let i = 0; i < chartsObj.myCharts.length; i++) {
+        setTimeout(() => {
+          chartsObj.myCharts[i].resize();
+        }, 1000);
+      }
+    });
+  });
+  window.dispatchEvent(myEvent);
+}
 
 onMounted(() => {
   initDeicount();
   initCake();
+  initColumn();
+  initEChartsResize();
+});
+
+onActivated(() => {
+  initEChartsResize();
 });
 </script>
 
 <style lang="scss" scoped>
-.home {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
+.charts-case {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "a b"
+    "c c";
+}
+.chartsColumn {
+  grid-area: c;
 }
 </style>

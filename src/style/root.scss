@@ -1,3 +1,27 @@
-:root{
-  --admin-column-bg-color:#282c34;
+:root {
+  --admin-column-bg-color: #282c34;
+}
+
+.scrollbar-y {
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #dfdfdf;
+    border-radius: 8px;
+  }
+}
+
+.scrollbar-x {
+  &::-webkit-scrollbar {
+    height: 8px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #dfdfdf;
+    border-radius: 8px;
+  }
 }

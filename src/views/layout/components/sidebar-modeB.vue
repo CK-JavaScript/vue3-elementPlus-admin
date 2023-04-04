@@ -139,7 +139,12 @@ watch(
 }
 
 .sidebar-mode-b-menu {
-  height: 100%;
+  overflow-y: scroll;
   background-color: var(--el-color-white);
+  height: 100%;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>

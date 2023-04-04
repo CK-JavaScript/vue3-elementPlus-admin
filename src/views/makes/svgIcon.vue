@@ -4,7 +4,7 @@
       <SvgIcon name="ElementPlus" size="50" color="#409eff"></SvgIcon>
     </el-card>
     <el-card header="参数" style="margin-top: 20px">
-      <el-table :data="tableData" style="width: 100%">
+      <el-table :data="tableData">
         <el-table-column prop="param" label="参数" />
         <el-table-column prop="explain" label="说明" />
         <el-table-column prop="type" label="类型" />

@@ -7,7 +7,7 @@
     </Transition>
     <div class="menu">
       <el-dropdown @visible-change="changeDropdownVisible">
-        <div class="flex align-center" style="gap: 0 10px;">
+        <div class="flex align-center" style="gap: 0 10px">
           <SvgIcon class="menu-icon" :style="menuIconStyle" name="Menu"></SvgIcon>
         </div>
         <template #dropdown>
@@ -24,60 +24,63 @@
 </template>
 
 <script setup>
-import navbarModeA from './navbar-modeA.vue'
-import navbarModeB from './navbar-modeB.vue'
-import navbarModeC from './navbar-modeC.vue'
-import { useConfigure } from '@/store/configure.js'
-import { useRoutes } from '@/store/routes.js'
-const storeRoutes = useRoutes()
+import navbarModeA from "./navbar-modeA.vue";
+import navbarModeB from "./navbar-modeB.vue";
+import navbarModeC from "./navbar-modeC.vue";
+import { useConfigure } from "@/store/configure.js";
+import { useRoutes } from "@/store/routes.js";
+const storeRoutes = useRoutes();
 
 // 获取枚举值
-const { navbarModeEnum } = ENUMS
+const { navbarModeEnum } = ENUMS;
 
 // 获取配置
-const storeConfigure = useConfigure()
-const { configure } = storeToRefs(storeConfigure)
+const storeConfigure = useConfigure();
+const { configure } = storeToRefs(storeConfigure);
 
 // 下拉菜单
 let menuItem = [
   {
-    title: '关闭其他',
-    icon: 'Close',
-    type: 'else'
-  }, {
-    title: '关闭左侧',
-    icon: 'Back',
-    type: 'left'
-  }, {
-    title: '关闭右侧',
-    icon: 'Right',
-    type: 'right'
-  }, {
-    title: '关闭全部',
-    icon: 'Close',
-    type: 'all'
-  }
-]
+    title: "关闭其他",
+    icon: "Close",
+    type: "else",
+  },
+  {
+    title: "关闭左侧",
+    icon: "Back",
+    type: "left",
+  },
+  {
+    title: "关闭右侧",
+    icon: "Right",
+    type: "right",
+  },
+  {
+    title: "关闭全部",
+    icon: "Close",
+    type: "all",
+  },
+];
 let menuIconStyle = reactive({
   transform: `rotate(0deg)`,
-  color: ''
-})
+  color: "",
+});
 
 /**
  * @description: 下拉菜单的显示与隐藏
  * @param {Bool} bool: true显示 false隐藏
  */
 function changeDropdownVisible(bool) {
-  menuIconStyle.transform = bool ? 'rotate(45deg)' : 'rotate(0deg)'
-  menuIconStyle.color = bool ? storeConfigure.configure.themeColor : ''
+  menuIconStyle.transform = bool ? "rotate(45deg)" : "rotate(0deg)";
+  menuIconStyle.color = bool ? storeConfigure.configure.themeColor : "";
 }
 
 // 设置 nav 的列表
-const router = useRouter()
+const router = useRouter();
 function setNavList(type) {
   storeRoutes.setNavList(type).then(() => {
-    router.push('/')
-  })
+    router.push("/");
+  });
 }
 </script>
 
@@ -112,7 +115,7 @@ function setNavList(type) {
   .menu-icon {
     font-size: 20px;
     color: var(--el-text-color-secondary);
-    transition: all .3s;
+    transition: all 0.3s;
   }
 }
 </style>

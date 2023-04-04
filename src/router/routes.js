@@ -84,12 +84,41 @@ export const staticRoutes = [
         },
       },
       {
-        path: "/about",
-        component: () => import("@/views/about.vue"),
+        path: "/makes",
+        component: bridge,
+        redirect: "/makes/svgIcon",
         meta: {
-          title: "关于我们",
-          icon: "Shop",
+          title: "组件封装",
+          icon: "Edit",
         },
+        children: [
+          {
+            path: "/makes/svgIcon",
+            component: () => import("@/views/makes/svgIcon.vue"),
+            meta: {
+              title: "SvgIcon",
+            },
+          },
+        ],
+      },
+      {
+        path: "/tools",
+        component: bridge,
+        redirect: "/tools/editor",
+        meta: {
+          title: "工具",
+          icon: "Flag",
+        },
+        children: [
+          {
+            path: "/tools/editor",
+            component: () => import("@/views/tools/editor.vue"),
+            meta: {
+              title: "编辑器",
+              icon: "Edit",
+            },
+          },
+        ],
       },
     ],
   },
@@ -196,43 +225,6 @@ export const asyncRoutes = [
             },
           },
         ],
-      },
-    ],
-  },
-  {
-    path: "/makes",
-    component: bridge,
-    redirect: "/makes/svgIcon",
-    meta: {
-      title: "组件封装",
-      icon: "Edit",
-    },
-    children: [
-      {
-        path: "/makes/svgIcon",
-        component: () => import("@/views/makes/svgIcon.vue"),
-        meta: {
-          title: "SvgIcon",
-        },
-      },
-    ],
-  },
-  {
-    path: "/tools",
-    component: bridge,
-    redirect: "/tools/editor",
-    meta: {
-      title: "工具",
-      icon: "Flag",
-    },
-    children: [
-      {
-        path: "/tools/editor",
-        component: () => import("@/views/tools/editor.vue"),
-        meta: {
-          title: "编辑器",
-          icon: "Edit",
-        },
       },
     ],
   },
