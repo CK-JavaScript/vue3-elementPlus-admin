@@ -1,18 +1,18 @@
 import { createApp } from "vue";
 
-import initComponents from "@/utils/components.js"; // 初始化全局组件
+import initComponents from "@/utils/components.js";
 
-import "./style/normalize.css"; // 重置样式
-import "./style/public.css"; // 公告样式
+import "./style/normalize.css";
+import "./style/public.css";
 
-import router from "./router/index.js"; // 路由
+import router from "./router/index.js";
 
-import pinia from "./store/store"; // pinia
+import pinia from "./store/store";
 
-import ElementPlus from "element-plus"; // UI
+import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 
-import * as ElementPlusIconsVue from "@element-plus/icons-vue"; // icon
+import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 
 import App from "./App.vue";
 

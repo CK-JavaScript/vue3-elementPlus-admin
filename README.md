@@ -1,6 +1,6 @@
 #### 🌈 介绍
 
-基于 vue3.x + CompositionAPI setup 语法糖 + vite + element plus + vue-router-next + pinia 技术的后台开源免费模板，希望减少工作量，实现快速开发。
+基于 vue3.x + CompositionAPI setup 语法糖 + vite + element plus + vue-router-next + pinia 技术的后台开源免费模板，希望减少工作量，实现快速开发，此项目为 JS 非 TS 版本。
 
 #### 🏭 环境支持
 
