@@ -38,7 +38,7 @@ export default defineConfig({
         },
       ],
       eslintrc: {
-        enabled: true,
+        enabled: false,
       },
     }),
   ],

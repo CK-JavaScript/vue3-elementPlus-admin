@@ -80,7 +80,7 @@ export const staticRoutes = [
         meta: {
           title: "首页",
           icon: "House",
-          isKeepAlive: true,
+          // isKeepAlive: true,
         },
       },
       {

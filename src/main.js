@@ -2,6 +2,8 @@ import { createApp } from "vue";
 
 import initComponents from "@/utils/components.js";
 
+import initDirective from "@/directive/index.js";
+
 import "./style/normalize.css";
 import "./style/public.css";
 
@@ -21,6 +23,7 @@ app.use(pinia);
 app.use(router);
 app.use(ElementPlus);
 app.use(initComponents);
+app.use(initDirective);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }

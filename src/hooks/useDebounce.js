@@ -10,7 +10,7 @@ function useDebounce(fn, time = 1000) {
     clearTimeout(timeLock);
     timeLock = setTimeout(() => {
       fn(...args);
-    }, time);
+    }, +time);
   };
 }
 export default useDebounce;
