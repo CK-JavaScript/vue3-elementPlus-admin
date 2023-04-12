@@ -12,7 +12,7 @@ function useThrottle(fn, time = 1000) {
       fn(...args);
       setTimeout(() => {
         flag = true;
-      }, +time);
+      }, time);
     }
   };
 }

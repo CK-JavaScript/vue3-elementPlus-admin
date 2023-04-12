@@ -33,3 +33,10 @@
 |      | `useLightColor`     | 变浅颜色值                                                                                                              | `useLightColor(color, level)`<br />`@param {String} color`：颜色值字符串<br />`@param {String} level`：变浅的程度，限 0-1 之间<br />`@return {String}`：变浅后的颜色                                                                                                                       |
 | 按键 | `useKeyStroke`      | 键盘按下事件 **<br />注: 仅支持如下键 Esc、Tab、<br />BackSpace、Enter、Shift、Ctrl、<br />Alt、Up、Down、Left、Right** | `useKeyStroke(key, fun)`<br />`@param {String} key`：要监听的键<br />`@param {Function} fun`：回调函数                                                                                                                                                                                     |
 | 方法 | `useRepairZero`     | 补零 ( 当数小于 10 在前补零 )                                                                                           | `useRepairZero(number)`<br />`@param {Number} number`：当前数<br />`@return {Number}`：补零后的数                                                                                                                                                                                          |
+
+### 😊 指令
+
+| 方法         | 说明                   | 使用                    |
+| ------------ | ---------------------- | ----------------------- |
+| `v-isLogin`  | 需要登录后可操作的函数 | `v-isLogin="fun"`       |
+| `v-throttle` | 节流函数指令           | `v-throttle:1000="fun"` |

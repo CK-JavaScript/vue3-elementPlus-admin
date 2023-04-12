@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <div class="select-case"></div>
     <div class="charts-case">
       <div ref="chartsDiscount" style="width: 100%; height: 400px"></div>
       <div ref="chartsCake" style="width: 100%; height: 400px"></div>

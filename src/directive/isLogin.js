@@ -1,15 +1,36 @@
 import _hook from "@/hooks/index.js";
 import { ElMessage } from "element-plus";
 export default {
-  mounted(el, binding, vnode, prevVnode) {
+  mounted(el, binding) {
     if (!_hook.useDataType(binding.value, "function")) {
       ElMessage({
-        message: "请绑定函数.",
+        message: "v-isLogin 请绑定函数",
         type: "warning",
       });
       return;
     }
-    el.addEventListener("click", () => {
+    el.handle = () => {
+      if (!_hook.useSessionStorage.get("token")) {
+        ElMessage({
+          message: "请登录后在操作",
+          type: "warning",
+        });
+        return;
+      }
+      binding.value();
+    };
+    el.addEventListener("click", el.handle);
+  },
+  updated() {
+    if (!_hook.useDataType(binding.value, "function")) {
+      ElMessage({
+        message: "v-isLogin 请绑定函数",
+        type: "warning",
+      });
+      return;
+    }
+    el.removeEventListener("click", el.handler);
+    el.handle = () => {
       if (!_hook.useSessionStorage.get("token")) {
         ElMessage({
           message: "请登录后在操作.",
@@ -17,7 +38,11 @@ export default {
         });
         return;
       }
-      binding.value && binding.value();
-    });
+      binding.value();
+    };
+    el.addEventListener("click", el.handle);
+  },
+  unmounted(el) {
+    el.removeEventListener("click", el.handler);
   },
 };
