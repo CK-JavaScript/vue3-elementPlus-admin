@@ -27,12 +27,8 @@ watch(
 onMounted(() => {
   // 初始化配置
   const configure = _hook.useLocalStorage.get("configure");
-  const defaultConfigure = _hook.useLocalStorage.get("defaultConfigure");
   if (configure) {
     storeConfigure.initConfigure(configure);
-  }
-  if (!defaultConfigure) {
-    _hook.useLocalStorage.set("defaultConfigure", storeConfigure.configure);
   }
 
   // 初始化颜色

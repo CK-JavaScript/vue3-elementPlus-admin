@@ -120,6 +120,25 @@ export const staticRoutes = [
           },
         ],
       },
+      {
+        path: "/other",
+        component: bridge,
+        redirect: "/other/watermark",
+        meta: {
+          title: "其他",
+          icon: "Box",
+        },
+        children: [
+          {
+            path: "/other/watermark",
+            component: () => import("@/views/other/watermark.vue"),
+            meta: {
+              title: "水印",
+              icon: "Edit",
+            },
+          },
+        ],
+      },
     ],
   },
 ];

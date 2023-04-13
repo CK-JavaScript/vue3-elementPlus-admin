@@ -10,7 +10,7 @@ export const useConfigure = defineStore("useConfigure", {
         themeColor: "#1890ff", // 主题色
         // ---------- 菜单 ----------
         collapse: false, // 是否收起侧边栏
-        menuMode: ENUMS.layoutModeEnum.key[0], // 菜单的布局模式
+        menuMode: ENUMS.layoutModeEnum.key[1], // 菜单的布局模式
         menuBGColor: "#282c34", // 菜单的背景色
         textColor: "#ffffff", // 菜单的文字颜色
         activeTextColor: "#ffffff", // 菜单的激活文字颜色

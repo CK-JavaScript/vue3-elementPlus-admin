@@ -181,17 +181,26 @@ function confirm() {
 // 恢复默认
 function recovery() {
   _hook.useLocalStorage.remove("configure");
-  const configure = _hook.useLocalStorage.get("defaultConfigure");
-  storeConfigure.initConfigure(JSON.parse(configure));
+  storeConfigure.$reset();
+
   // 初始化颜色
-  _hook.useCssVar("--el-color-primary", getConfigure.value.themeColor);
-  _hook.useCssVar("--el-menu-bg-color", getConfigure.value.menuBGColor);
-  _hook.useCssVar("--admin-column-bg-color", getConfigure.value.menuBGColor);
-  _hook.useCssVar("--el-menu-text-color", getConfigure.value.textColor);
-  _hook.useCssVar("--el-menu-active-color", getConfigure.value.activeTextColor);
+  _hook.useCssVar("--el-color-primary", storeConfigure.configure.themeColor);
+  switch (storeConfigure.configure.menuMode) {
+    case layoutModeEnum.key[0]:
+      _hook.useCssVar("--el-menu-bg-color", storeConfigure.configure.menuBGColor);
+      break;
+    case layoutModeEnum.key[1]:
+      _hook.useCssVar("--el-menu-bg-color", "#ffffff");
+      break;
+    default:
+  }
+  _hook.useCssVar("--admin-column-bg-color", storeConfigure.configure.menuBGColor);
+  _hook.useCssVar("--el-menu-text-color", storeConfigure.configure.textColor);
+  _hook.useCssVar("--el-menu-active-color", storeConfigure.configure.activeTextColor);
   [3, 5, 7, 8, 9].forEach((i) => {
-    _hook.useCssVar(`--el-color-primary-light-${i}`, _hook.useLightColor(getConfigure.value.themeColor, `0.${i}`));
+    _hook.useCssVar(`--el-color-primary-light-${i}`, _hook.useLightColor(storeConfigure.configure.themeColor, `0.${i}`));
   });
+
   ElMessage({
     message: "配置已恢复默认",
     type: "success",
