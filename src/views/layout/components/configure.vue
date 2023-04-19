@@ -28,12 +28,6 @@
         <span>标签</span>
       </el-divider>
       <el-row :gutter="10" class="vab-row">
-        <el-col :span="9" class="list-title"> 标签 </el-col>
-        <el-col :span="15">
-          <el-switch v-model="getConfigure.showNavbar" />
-        </el-col>
-      </el-row>
-      <el-row :gutter="10" class="vab-row">
         <el-col :span="9" class="list-title"> 标签风格 </el-col>
         <el-col :span="15">
           <el-select v-model="getConfigure.navbarMode" placeholder="请选择布局">

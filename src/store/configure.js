@@ -18,7 +18,6 @@ export const useConfigure = defineStore("useConfigure", {
         // ---------- 分栏 ----------
         columnBgColor: "#282c34",
         // ---------- 导航栏 ----------
-        showNavbar: true,
         navbarMode: ENUMS.navbarModeEnum.key[0],
         navbarIcon: true,
         // 过度

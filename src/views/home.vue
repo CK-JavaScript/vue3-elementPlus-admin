@@ -1,15 +1,29 @@
 <template>
   <div class="home">
+    <div class="userInfo">
+      <el-avatar :size="50" :src="storeUser.userInfo.avatar" />
+      <div>
+        <p class="name">你好 {{ storeUser.userInfo.username }}</p>
+      </div>
+    </div>
     <div class="charts-case">
-      <div ref="chartsDiscount" style="width: 100%; height: 400px"></div>
-      <div ref="chartsCake" style="width: 100%; height: 400px"></div>
-      <div class="chartsColumn" ref="chartsColumn" style="width: 100%; height: 400px"></div>
+      <div class="charts-chunk">
+        <div ref="chartsDiscount" style="width: 100%; height: 400px"></div>
+      </div>
+      <div class="charts-chunk">
+        <div ref="chartsCake" style="width: 100%; height: 400px"></div>
+      </div>
+      <div class="charts-chunk">
+        <div ref="chartsColumn" style="width: 100%; height: 400px"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import * as echarts from "echarts";
+import { useUser } from "@/store/user.js";
+const storeUser = useUser();
 
 // 定义变量内容
 const chartsDiscount = ref();
@@ -180,15 +194,39 @@ onActivated(() => {
 </script>
 
 <style lang="scss" scoped>
+.userInfo {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0 20px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  .name {
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
 .charts-case {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
   grid-template-areas:
     "a b"
     "c c";
+  margin-top: 10px;
 }
-.chartsColumn {
+.charts-chunk {
+  border: 1px solid #eee;
+}
+.charts-chunk:nth-child(0) {
+  grid-area: a;
+}
+.charts-chunk:nth-child(1) {
+  grid-area: b;
+}
+.charts-chunk:last-child {
   grid-area: c;
 }
 </style>

@@ -9,7 +9,7 @@
       <div class="layout-case" style="flex-direction: column">
         <header class="header">
           <page-header @operation="operation"></page-header>
-          <navbar v-if="getConfigure.showNavbar"></navbar>
+          <navbar></navbar>
         </header>
         <main class="main">
           <router-view v-slot="{ Component }" v-if="isRefreshRoute">
@@ -153,15 +153,15 @@ function reload() {
   height: 110px;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 }
+
 .main {
   display: block;
   flex: 1;
   flex-basis: auto;
-  overflow-y: auto;
-  overflow-x: hidden;
   border: 15px solid var(--el-color-info-light-9);
   box-sizing: border-box;
-  background-color: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
   @extend .scrollbar-y;
 }
 </style>
