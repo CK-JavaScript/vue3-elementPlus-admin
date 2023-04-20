@@ -86,7 +86,7 @@ function checkCode(rule, value, callback) {
 const rules = reactive({
   username: [{ validator: checkName, required: true, trigger: "blur" }],
   password: [{ required: true, message: "密码不可为空", trigger: "blur" }],
-  code: [{ validator: checkCode, required: true }],
+  code: [{ validator: checkCode, required: true, trigger: "blur" }],
 });
 
 // 登录
