@@ -134,7 +134,13 @@ export const staticRoutes = [
             component: () => import("@/views/other/watermark.vue"),
             meta: {
               title: "水印",
-              icon: "Edit",
+            },
+          },
+          {
+            path: "/other/resize",
+            component: () => import("@/views/other/resize.vue"),
+            meta: {
+              title: "监控元素尺寸变化",
             },
           },
         ],
